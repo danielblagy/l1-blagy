@@ -12,6 +12,7 @@ func main() {
 	sink(c2)
 }
 
+// source creates a channel and pushes the input values into it
 func source(numbers ...int) <-chan int {
 	outChannel := make(chan int)
 
@@ -25,6 +26,8 @@ func source(numbers ...int) <-chan int {
 	return outChannel
 }
 
+// processor gets values from input channel, computes new values based on the input,
+// and puts them into output channel
 func processor(inChannel <-chan int) <-chan int {
 	outChannel := make(chan int)
 
@@ -38,6 +41,7 @@ func processor(inChannel <-chan int) <-chan int {
 	return outChannel
 }
 
+// sink gets values from the input channel and prints them
 func sink(inChannel <-chan int) {
 	for value := range inChannel {
 		fmt.Println(value)

@@ -17,6 +17,7 @@ func CreateMyMap() *MyMap {
 }
 
 func (m *MyMap) GetValue(key string) (int, bool) {
+	// lock mutex while reading data from map
 	m.dataMutex.Lock()
 	value, ok := m.data[key]
 	m.dataMutex.Unlock()
@@ -24,6 +25,7 @@ func (m *MyMap) GetValue(key string) (int, bool) {
 }
 
 func (m *MyMap) SetValue(key string, value int) {
+	// lock mutex while writing data to map
 	m.dataMutex.Lock()
 	m.data[key] = value
 	m.dataMutex.Unlock()

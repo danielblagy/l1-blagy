@@ -7,6 +7,10 @@ func main() {
 	tempGroups := make(map[int][]float64)
 
 	for _, t := range temps {
+		// for example:
+		//	int(32.5) -> 32
+		//	32 / 10 = 3.2 -> 3
+		//	3 * 10 = 30
 		groupKey := int(t) / 10 * 10
 		tempGroups[groupKey] = append(tempGroups[groupKey], t)
 	}
